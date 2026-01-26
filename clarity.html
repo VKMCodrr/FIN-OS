@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIN•OS | Clarity HUD</title>
+  
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/clarity.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">FIN•OS</div>
+      <nav>
+      <a href="profile.html"><span class="user-symbol">👤</span> Profile</a>
+      <a href="home.html" >Home</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="learn-insurance.html">Shield (Insurance)</a>
+      <a href="know-your-finances.html">Financial X-Ray</a>
+      <a href="financial-being.html" >Financial Well-Being </a> 
+      <a href="finance101.html">Fin-101</a>
+      <a href="principles.html">Priciples n Laws</a>
+      <a href="impact.html">Impact</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="portfolio.html">Portfolio Disector</a>
+      <a href="markets.html">Markets</a>
+      <a href="tracker.html">Live Tracker</a> 
+      <a href="tax.html">Tax</a>
+      <a href="news.html">News</a>
+      <a href="settings.html">Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="content-wrapper">
+
+        <header class="header header-flex">
+          <div>
+            <h1 class="glitch-text" data-text="Clarity HUD">Clarity HUD</h1>
+            <p class="hero-sub">Confusion creates fear. <span class="highlight">Clarity</span> creates calm.</p>
+          </div>
+          <button id="themeToggle" class="theme-btn">🌙</button>
+        </header>
+
+        <section class="scanner-section">
+          <div class="scan-line"></div>
+          <div class="hud-display">
+            <div class="hud-stat">
+              <span class="label">NET WORTH</span>
+              <span class="value success">CALCULATING...</span>
+            </div>
+            <div class="hud-stat">
+              <span class="label">DEBT LOAD</span>
+              <span class="value warning">SCANNING...</span>
+            </div>
+          </div>
+          <p class="scanner-text">Initializing Financial X-Ray...</p>
+        </section>
+
+        <section class="module-group">
+            <br>
+          <div class="section-badge">LAYER 01: THE MAP</div>
+          <h2>Income vs Outflow</h2>
+          
+          <div class="flow-container glass">
+            <div class="flow-stage source">
+              <div class="icon">💰</div>
+              <h3>Income</h3>
+              <ul class="micro-list">
+                <li>Salary</li>
+                <li>Bonus</li>
+                <li>Side Hustle</li>
+              </ul>
+            </div>
+            
+            <div class="flow-pipe">
+              <div class="particles"></div>
+            </div>
+
+            <div class="flow-stage sink">
+              <div class="icon">📉</div>
+              <h3>Expenses</h3>
+              <ul class="micro-list">
+                <li>Fixed (Rent/EMI)</li>
+                <li>Variable (Food)</li>
+                <li class="danger">Invisible (Subs)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="module-group">
+            <br>
+          <div class="section-badge">LAYER 02: STRUCTURE</div>
+          <h2>What You Own vs What You Owe</h2>
+          
+          <div class="grid-2">
+            <div class="hud-card asset-card">
+              <div class="hud-header">
+                <h4>✅ ASSETS (Friends)</h4>
+                <div class="status-light green"></div>
+              </div>
+              <p class="hud-desc">Things that put money <strong>IN</strong> your pocket.</p>
+              <div class="hud-list">
+                <span>📈 Equity</span>
+                <span>🏠 Real Estate (Rented)</span>
+                <span>🥇 Gold</span>
+              </div>
+            </div>
+
+            <div class="hud-card liability-card">
+              <div class="hud-header">
+                <h4>❌ LIABILITIES (Enemies)</h4>
+                <div class="status-light red"></div>
+              </div>
+              <p class="hud-desc">Things that take money <strong>OUT</strong> of your pocket.</p>
+              <div class="hud-list">
+                <span>🚗 Car Loan</span>
+                <span>💳 Credit Card</span>
+                <span>📱 iPhone EMI</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="module-group">
+            <br>
+          <div class="section-badge">LAYER 03: TIME COST</div>
+          <h2>The EMI Time Machine</h2>
+          
+          <div class="time-machine glass">
+            <p>Slide to see how EMI eats your future freedom.</p>
+            <input type="range" min="0" max="50" value="0" id="emiSlider" class="cyber-slider">
+            
+            <div class="time-result">
+              <div class="time-stat">
+                <span>EMI Amount:</span>
+                <strong id="emiDisplay">₹0</strong>
+              </div>
+              <div class="time-stat">
+                <span>Future Wealth Lost:</span>
+                <strong id="lossDisplay" class="highlight">₹0</strong>
+              </div>
+            </div>
+            <p class="disclaimer">*Calculated at 12% lost opportunity cost over 10 years.</p>
+          </div>
+        </section>
+
+       <section class="module-group" id="financial-ladder">
+        <br>
+          <div class="section-badge">FINAL PROTOCOL</div>
+          <h2>Your Financial Order of Operations</h2>
+          <p style="margin-bottom: 30px; opacity: 0.8;">Don't jump to Step 5 (Investing) before fixing Step 3 (Emergency Fund).</p>
+          
+          <div class="ladder-container">
+            
+            <div class="ladder-step completed" onclick="toggleLadder(this)">
+              <div class="step-header">
+                <div class="step-icon">1</div>
+                <h3>Income Clarity</h3>
+                <div class="step-status">✅ DONE</div>
+              </div>
+              <div class="step-body">
+                <p>Know exactly what hits your bank account vs what is "CTC".</p>
+                <div class="mini-rule">Rule: You cannot manage what you do not measure.</div>
+              </div>
+            </div>
+
+            <div class="ladder-step active" onclick="toggleLadder(this)">
+              <div class="step-header">
+                <div class="step-icon">2</div>
+                <h3>Expense Control</h3>
+                <div class="step-status">📍 CURRENT</div>
+              </div>
+              <div class="step-body">
+                <p><strong>The Leak:</strong> "Chalta Hai" spending on weekends.</p>
+                <p><strong>The Fix:</strong> Track "Needs" vs "Wants" for 30 days. Kill 2 subscriptions you don't use.</p>
+                <div class="mini-rule highlight">Target: Save at least 20% of Income.</div>
+              </div>
+            </div>
+
+            <div class="ladder-step" onclick="toggleLadder(this)">
+              <div class="step-header">
+                <div class="step-icon">3</div>
+                <h3>Emergency Fund</h3>
+                <div class="step-status">🔒 LOCKED</div>
+              </div>
+              <div class="step-body">
+                <p>Before buying stocks, keep <strong>6 Months of Expenses</strong> in a Liquid Fund/FD.</p>
+                <p><strong>Why?</strong> So you don't sell your investments when life hits you.</p>
+              </div>
+            </div>
+
+            <div class="ladder-step" onclick="toggleLadder(this)">
+              <div class="step-header">
+                <div class="step-icon">4</div>
+                <h3>Insurance (Protection)</h3>
+                <div class="step-status">🔒 LOCKED</div>
+              </div>
+              <div class="step-body">
+                <p><strong>Health:</strong> 5L Base + 20L Super Top-up.</p>
+                <p><strong>Life:</strong> Term Insurance (20x Annual Income). Do not mix insurance with investment (ULIP).</p>
+              </div>
+            </div>
+
+            <div class="ladder-step" onclick="toggleLadder(this)">
+              <div class="step-header">
+                <div class="step-icon">5</div>
+                <h3>Investing (Growth)</h3>
+                <div class="step-status">🔒 LOCKED</div>
+              </div>
+              <div class="step-body">
+                <p>Now you are ready to beat inflation.</p>
+                <ul class="micro-list">
+                  <li>Start Nifty 50 SIP.</li>
+                  <li>Buy Gold (SGB).</li>
+                  <li>Explore Stocks.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <footer class="final-message glass">
+          <h2>System Message</h2>
+          <p class="terminal-text">> Once you see your money clearly,</p>
+          <p class="terminal-text highlight">> Decisions stop being scary.</p>
+          <a href="markets.html" class="next-module-btn">Next: Understand Markets ➔</a>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/ui.js"></script>
+  <script src="js/clarity.js"></script>
+</body>
+</html>
