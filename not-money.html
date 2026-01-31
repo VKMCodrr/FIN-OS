@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIN•OS | System Intervention</title>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* =========================
+       THEME: THE VOID (INTROSPECTION)
+       ========================= */
+    :root {
+      --void-bg: #05020a;
+      --void-card: rgba(255, 255, 255, 0.03);
+      --void-border: rgba(188, 19, 254, 0.2);
+      --neon-alert: #ff0055;
+      --neon-truth: #00f3ff;
+      --neon-soul: #bc13fe;
+      --font-display: 'Manrope', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background-color: var(--void-bg) !important;
+      background-image: 
+        radial-gradient(circle at 50% 30%, rgba(188, 19, 254, 0.08) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      color: #fff !important;
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+
+    /* Sidebar Override */
+    .sidebar { background: rgba(5, 2, 10, 0.95); border-right: 1px solid var(--void-border); backdrop-filter: blur(10px); }
+
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 60px;
+      padding-bottom: 100px;
+      position: relative;
+    }
+
+    /* =========================
+       HERO: THE HALT
+       ========================= */
+    .intervention-header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .system-msg {
+      font-family: var(--font-mono);
+      color: var(--neon-alert);
+      border: 1px solid var(--neon-alert);
+      padding: 8px 16px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      animation: pulseAlert 2s infinite;
+    }
+
+    @keyframes pulseAlert { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .halt-title {
+      font-size: 4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 15px;
+      text-shadow: 0 0 30px rgba(255, 0, 85, 0.2);
+    }
+
+    .halt-subtitle {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       SECTION 1: NAME THE FEELING
+       ========================= */
+    .emotion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .emotion-btn {
+      background: var(--void-card);
+      border: 1px solid var(--void-border);
+      padding: 25px 15px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .emotion-btn:hover {
+      transform: translateY(-5px);
+      background: rgba(188, 19, 254, 0.1);
+      border-color: var(--neon-soul);
+    }
+
+    .emotion-btn.active {
+      background: var(--neon-soul);
+      border-color: var(--neon-soul);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
+    }
+
+    .e-icon { font-size: 2rem; display: block; margin-bottom: 10px; }
+    .e-label { font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; }
+
+    /* =========================
+       SECTION 2: THE REALITY CHECK (DYNAMIC)
+       ========================= */
+    .diagnosis-section {
+      display: none; /* Hidden until clicked */
+      animation: expandOpen 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes expandOpen { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .truth-card {
+      background: linear-gradient(145deg, rgba(20, 10, 30, 0.9), rgba(10, 5, 15, 0.95));
+      border: 1px solid var(--void-border);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .truth-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--neon-truth);
+    }
+
+    .t-header { font-family: var(--font-mono); color: var(--neon-truth); margin-bottom: 10px; display: block; font-size: 0.9rem; }
+    .t-title { font-size: 2.5rem; color: #fff; font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+    
+    .t-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+    
+    .t-col h4 { color: #888; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+    .t-text { font-size: 1rem; color: #ccc; line-height: 1.7; }
+
+    /* Desi Context Box */
+    .desi-context {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 3px solid var(--neon-alert);
+    }
+    .desi-label { color: var(--neon-alert); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
+    .desi-story { font-style: italic; color: #ddd; font-size: 0.95rem; }
+
+    /* =========================
+       SECTION 3: THE PRESCRIPTION
+       ========================= */
+    .rx-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .rx-card {
+      background: var(--void-card);
+      border: 1px solid #333;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .rx-card:hover { border-color: var(--neon-truth); transform: translateY(-3px); }
+
+    .rx-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .rx-head { color: #fff; font-weight: 700; margin-bottom: 5px; }
+    .rx-desc { color: #888; font-size: 0.85rem; }
+
+    /* Footer Action */
+    .action-row {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid #222;
+    }
+
+    .safe-btn {
+      background: transparent;
+      border: 1px solid #444;
+      color: #666;
+      padding: 12px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      transition: 0.3s;
+    }
+    .safe-btn:hover { border-color: #fff; color: #fff; }
+
+    @media (max-width: 800px) {
+      .t-grid { grid-template-columns: 1fr; }
+      .rx-grid { grid-template-columns: 1fr; }
+      .halt-title { font-size: 2.5rem; }
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo" style="color:var(--neon-soul);">FIN•OS</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="not-money.html" class="active" style="color:var(--neon-alert);">System Pause</a>
+      <a href="fear-roadmap.html">Mindset</a>
+      <a href="markets.html">Markets</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="content-wrapper">
+
+      <header class="intervention-header">
+        <span class="system-msg">⚠ SYSTEM INTERVENTION PROTOCOL</span>
+        <h1 class="halt-title">Pause.<br>This isn't Money.</h1>
+        <p class="halt-subtitle">
+          Your urgency is not coming from the market. <br>
+          It is coming from somewhere else. Let's find it.
+        </p>
+      </header>
+
+      <section>
+        <p style="text-align:center; color:#666; font-family:var(--font-mono); margin-bottom:20px;">IDENTIFY DOMINANT EMOTION</p>
+        
+        <div class="emotion-grid">
+          <div class="emotion-btn" onclick="diagnose('anxiety', this)">
+            <span class="e-icon">⚡</span>
+            <span class="e-label">Anxiety / Panic</span>
+          </div>
+          <div class="emotion-btn" onclick="diagnose('envy', this)">
+            <span class="e-icon">👀</span>
+            <span class="e-label">Envy / FOMO</span>
+          </div>
+          <div class="emotion-btn" onclick="diagnose('boredom', this)">
+            <span class="e-icon">🥱</span>
+            <span class="e-label">Boredom</span>
+          </div>
+          <div class="emotion-btn" onclick="diagnose('insecurity', this)">
+            <span class="e-icon">🥺</span>
+            <span class="e-label">Insecurity</span>
+          </div>
+          <div class="emotion-btn" onclick="diagnose('revenge', this)">
+            <span class="e-icon">😡</span>
+            <span class="e-label">Anger / Revenge</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="diagnosisBox" class="diagnosis-section">
+        
+        <div class="truth-card">
+          <span class="t-header" id="d-tag">// DIAGNOSIS: DISPLACEMENT</span>
+          <h2 class="t-title" id="d-title">You are not confused. You are overwhelmed.</h2>
+          
+          <div class="t-grid">
+            <div class="t-col">
+              <h4>The Real Source</h4>
+              <p class="t-text" id="d-source">
+                It's likely Career Stagnation or Family Pressure. You feel stuck in life, so you want to "move fast" in the market to compensate.
+              </p>
+            </div>
+            <div class="t-col">
+              <h4>The Market Trap</h4>
+              <p class="t-text" id="d-trap">
+                The market sells you <strong>Speed and Control</strong>. It promises that one click can change your reality. This is a lie.
+              </p>
+            </div>
+          </div>
+
+          <div class="desi-context">
+            <span class="desi-label">REAL LIFE CONTEXT</span>
+            <p class="desi-story" id="d-story">
+              Like hating your boss at 10 AM and opening a trading app at 10:15 AM to prove you don't need the job. The trade isn't financial; it's an emotional exit door.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="text-align:center; margin-bottom:30px; color:#fff;">NON-FINANCIAL PROTOCOLS</h3>
+        <div class="rx-grid" id="rx-grid">
+          </div>
+
+        <div class="action-row">
+          <p style="color:#888; font-size:0.9rem; margin-bottom:20px;">"The best trade you make today is doing nothing."</p>
+          <button class="safe-btn" onclick="location.reload()">System Reset</button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  function diagnose(emotion, btn) {
+    // 1. Highlight Button
+    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // 2. Show Section
+    const box = document.getElementById('diagnosisBox');
+    box.style.display = 'block';
+    
+    // 3. Populate Content
+    const data = getEmotionData(emotion);
+    
+    document.getElementById('d-tag').innerText = `// DIAGNOSIS: ${data.tag}`;
+    document.getElementById('d-title').innerText = data.title;
+    document.getElementById('d-source').innerText = data.source;
+    document.getElementById('d-trap').innerText = data.trap;
+    document.getElementById('d-story').innerText = data.story;
+
+    // 4. Populate RX
+    const rxGrid = document.getElementById('rx-grid');
+    rxGrid.innerHTML = '';
+    data.rx.forEach(item => {
+      rxGrid.innerHTML += `
+        <div class="rx-card">
+          <span class="rx-icon">${item.icon}</span>
+          <div class="rx-head">${item.head}</div>
+          <div class="rx-desc">${item.desc}</div>
+        </div>
+      `;
+    });
+
+    // Smooth Scroll
+    setTimeout(() => {
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+  function getEmotionData(type) {
+    const db = {
+      anxiety: {
+        tag: "URGENCY ILLUSION",
+        title: "This urgency is fake. The opportunity isn't leaving.",
+        source: "Uncertainty in life (Job instability, Big expense coming up). You feel out of control, so you want to 'fix' your bank balance instantly.",
+        trap: "The market looks like a fast solution to a slow problem. Fast actions in anxiety lead to disaster.",
+        story: "Like driving faster because you are late for a wedding. Speeding doesn't fix the time; it increases the risk of a crash.",
+        rx: [
+          {icon: "🛑", head: "No Transacting", desc: "Do not buy or sell for 24 hours."},
+          {icon: "📝", head: "Write it Down", desc: "List exactly what is worrying you outside the market."},
+          {icon: "🚶", head: "Physical Reset", desc: "Go for a walk. Change your environment."}
+        ]
+      },
+      envy: {
+        tag: "SOCIAL COMPARISON",
+        title: "You are not falling behind. You are just looking sideways.",
+        source: "Instagram / LinkedIn. Seeing others succeed makes you feel inadequate. You want to catch up.",
+        trap: "The market promises 'Instant Status'. You are trying to buy self-worth, not assets.",
+        story: "Sharmaji ka beta bought a car, so you want to trade F&O to buy a bigger car. His success is not your failure.",
+        rx: [
+          {icon: "📵", head: "Digital Detox", desc: "Close social media apps for today."},
+          {icon: "🐢", head: "Respect Your Pace", desc: "Wealth is a marathon, not a sprint."},
+          {icon: "🎯", head: "Review Your Goals", desc: "Look at YOUR plan, not their outcome."}
+        ]
+      },
+      boredom: {
+        tag: "DOPAMINE SEEKING",
+        title: "You don't need money. You need excitement.",
+        source: "Routine life is dull. Work is repetitive. You crave a 'Win' or just some action.",
+        trap: "The market becomes a video game. You enter trades just to feel something.",
+        story: "Like opening the fridge when you aren't hungry, just bored. You will eat junk you don't need.",
+        rx: [
+          {icon: "🎮", head: "Play a Game", desc: "If you need action, play a video game, not stocks."},
+          {icon: "🏋️", head: "High Intensity", desc: "Do pushups. Get the dopamine physically."},
+          {icon: "📉", head: "Paper Trade", desc: "If you must trade, use a simulator."}
+        ]
+      },
+      insecurity: {
+        tag: "VALIDATION SEEKING",
+        title: "Profit will not make you 'Enough'.",
+        source: "Recent failure or rejection. You feel small. You want the market to tell you that you are smart.",
+        trap: "The market is not a judge of your character. A loss here will destroy your already fragile ego.",
+        story: "Trying to impress people who don't care about you by taking risks that could ruin you.",
+        rx: [
+          {icon: "🗣️", head: "Talk to Someone", desc: "Call a friend who supports you."},
+          {icon: "🏆", head: "Recall Wins", desc: "Remember non-financial things you are good at."},
+          {icon: "🔒", head: "Lock Capital", desc: "Do not risk money to prove a point."}
+        ]
+      },
+      revenge: {
+        tag: "EGO RECOVERY",
+        title: "The market doesn't owe you anything.",
+        source: "You lost money recently. You feel robbed. You want to 'win it back' immediately.",
+        trap: "Revenge trading is the fastest way to zero. You are trading your anger, not the chart.",
+        story: "Like fighting with a wall because you bumped into it. The wall doesn't care, and you will only hurt your hand.",
+        rx: [
+          {icon: "🔌", head: "Unplug", desc: "Shut down the terminal. Walk away."},
+          {icon: "💤", head: "Sleep on It", desc: "Decisions made in anger are always wrong."},
+          {icon: "🔍", head: "Audit Later", desc: "Analyze the loss only when you are calm."}
+        ]
+      }
+    };
+    return db[type];
+  }
+</script>
+
+</body>
+</html>
