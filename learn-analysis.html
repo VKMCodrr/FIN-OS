@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIN•OS | Select Analysis Protocol</title>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* =========================
+       THEME: THE CROSSROADS
+       ========================= */
+    :root {
+      --fund-green: #0aff68;  /* Fundamental - Growth/Stability */
+      --tech-blue: #00f3ff;   /* Technical - Data/Speed */
+      --bg-void: #050505;
+      --glass: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.1);
+      --font-display: 'Manrope', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background-color: var(--bg-void) !important;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      color: #fff !important;
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+
+    /* Sidebar Override */
+    .sidebar { background: rgba(5, 5, 5, 0.95); border-right: 1px solid #222; backdrop-filter: blur(10px); }
+
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 40px;
+      padding-bottom: 100px;
+    }
+
+    /* =========================
+       HERO: THE TRUTH
+       ========================= */
+    .gate-header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    .gate-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #aaa;
+      border: 1px solid #444;
+      padding: 6px 14px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .gate-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fff, #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gate-sub {
+      color: #888;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       THE FORK (SPLIT SCREEN)
+       ========================= */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .analysis-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Hover Effects */
+    .analysis-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Fundamental Specifics */
+    .card-fund:hover { border-color: var(--fund-green); box-shadow: 0 20px 50px rgba(10, 255, 104, 0.15); }
+    .card-fund:hover .card-icon { color: var(--fund-green); transform: scale(1.1); }
+    .card-fund .action-btn { border-color: var(--fund-green); color: var(--fund-green); }
+    .card-fund .action-btn:hover { background: var(--fund-green); color: #000; }
+
+    /* Technical Specifics */
+    .card-tech:hover { border-color: var(--tech-blue); box-shadow: 0 20px 50px rgba(0, 243, 255, 0.15); }
+    .card-tech:hover .card-icon { color: var(--tech-blue); transform: scale(1.1); }
+    .card-tech .action-btn { border-color: var(--tech-blue); color: var(--tech-blue); }
+    .card-tech .action-btn:hover { background: var(--tech-blue); color: #000; }
+
+    /* Content Styling */
+    .card-icon { font-size: 4rem; margin-bottom: 20px; transition: 0.3s; display: block; }
+    .card-title { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .card-tagline { font-family: var(--font-mono); font-size: 0.9rem; color: #888; margin-bottom: 30px; display: block; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+
+    .trait-list { list-style: none; padding: 0; margin-bottom: 40px; flex-grow: 1; }
+    .trait-list li {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #ccc; font-size: 1rem;
+    }
+    .trait-icon { opacity: 0.7; font-size: 1.2rem; }
+
+    /* Desi Chip */
+    .desi-chip {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 30px;
+      border-left: 3px solid #666;
+      font-style: italic;
+    }
+    .desi-chip span { color: #fff; font-weight: bold; font-style: normal; }
+
+    /* CTA Button */
+    .action-btn {
+      width: 100%;
+      padding: 18px;
+      border: 1px solid #444;
+      background: transparent;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* =========================
+       SECTION: NO PRESSURE
+       ========================= */
+    .safe-zone {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 20px;
+      border: 1px dashed var(--border);
+    }
+    .safe-title { font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+    .safe-text { color: #888; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .analysis-grid { grid-template-columns: 1fr; }
+      .gate-title { font-size: 2.5rem; }
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">FIN•OS</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="markets.html" class="active">Markets</a>
+      <a href="roadmap.html">GPS</a>
+      <a href="calculators.html">Calculators</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="content-wrapper">
+
+      <section class="gate-header">
+        <span class="gate-badge">MODULE SELECTION</span>
+        <h1 class="gate-title">Don't Learn the Market.<br>Learn How to Look at It.</h1>
+        <p class="gate-sub">
+          Analysis is simply making sense of uncertainty. <br>
+          There are two ways to do this. Choose the lens that fits your mind.
+        </p>
+      </section>
+
+      <div class="analysis-grid">
+
+        <div class="analysis-card card-fund">
+          <span class="card-icon">🏢</span>
+          <h2 class="card-title">Fundamental Analysis</h2>
+          <span class="card-tagline">// THE BUSINESS VIEW</span>
+
+          <div class="desi-chip">
+            <span>Desi Logic:</span> Like checking the engine, mileage, and service history before buying a second-hand car. You care about the <strong>quality</strong>.
+          </div>
+
+          <ul class="trait-list">
+            <li><span class="trait-icon">🌱</span> <strong>For:</strong> Long-term thinkers & Investors</li>
+            <li><span class="trait-icon">🧠</span> <strong>Focus:</strong> Profit, Management, Durability</li>
+            <li><span class="trait-icon">⏳</span> <strong>Speed:</strong> Slow, deep, and calm</li>
+            <li><span class="trait-icon">❓</span> <strong>Asks:</strong> "Is this company worth trusting?"</li>
+          </ul>
+
+          <a href="learn-fundamental.html" class="action-btn">Initialize Fundamental ➔</a>
+        </div>
+
+        <div class="analysis-card card-tech">
+          <span class="card-icon">📈</span>
+          <h2 class="card-title">Technical Analysis</h2>
+          <span class="card-tagline">// THE CROWD VIEW</span>
+
+          <div class="desi-chip">
+            <span>Desi Logic:</span> Like checking Google Maps traffic before driving. You don't care why the jam exists, you just want to know <strong>when to move</strong>.
+          </div>
+
+          <ul class="trait-list">
+            <li><span class="trait-icon">⚡</span> <strong>For:</strong> Active Traders & Timing</li>
+            <li><span class="trait-icon">👀</span> <strong>Focus:</strong> Price Patterns, Volume, Trends</li>
+            <li><span class="trait-icon">🏎️</span> <strong>Speed:</strong> Fast, visual, and reactive</li>
+            <li><span class="trait-icon">❓</span> <strong>Asks:</strong> "Is now the right time to buy?"</li>
+          </ul>
+
+          <a href="learn-technical.html" class="action-btn">Initialize Technical ➔</a>
+        </div>
+
+      </div>
+
+      <div class="safe-zone">
+        <h3 class="safe-title">⚠️ System Note: No Wrong Choice</h3>
+        <p class="safe-text">
+          You do not have to choose forever. Most successful investors use <strong>Fundamental</strong> to choose <em>what</em> to buy, and <strong>Technical</strong> to decide <em>when</em> to buy. <br><br>
+          Start with the one that feels less scary. You can switch anytime.
+        </p>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

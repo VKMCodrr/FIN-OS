@@ -393,15 +393,22 @@
       </div>
 
 
-      <footer style="margin-bottom: 100px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px;">
-        <h2 style="color: #fff;">Pulse Check Complete.</h2>
-        <p style="color: #666; font-family:var(--font-mono);">[ SYSTEM READY FOR CHARTING ]</p>
-        <br>
-        <button onclick="window.location.href='dashboard.html'" 
-        style="padding: 18px 45px; background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; box-shadow: 0 0 20px rgba(10, 255, 104, 0.1);">
-          Return to Dashboard
-        </button>
-      </footer>
+<footer style="margin-bottom: 100px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px;">
+  <h2 style="color: #fff;">Pulse Check Complete.</h2>
+  <p style="color: #666; font-family:var(--font-mono); margin-bottom:30px;">[ READY FOR FLIGHT ]</p>
+  
+  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+    <button onclick="window.location.href='learn-indicators.html'" 
+    style="padding: 18px 45px; background: var(--neon-green); border: none; color: #000; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; box-shadow: 0 0 30px rgba(10, 255, 104, 0.4);">
+      Initialize Toolkit ➔
+    </button>
+
+    <button onclick="window.location.href='dashboard.html'" 
+    style="padding: 18px 45px; background: transparent; border: 1px solid #444; color: #888; border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;">
+      Return to Base
+    </button>
+  </div>
+</footer>
 
     </div>
   </main>
