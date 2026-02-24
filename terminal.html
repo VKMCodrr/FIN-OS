@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber">
+<head>
+    <meta charset="UTF-8">
+    <title>FIN-OS | OMNI GOD MODE</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/terminal.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="cyber-overlay"></div>
+<div class="scan-line"></div>
+<div class="noise"></div>
+
+<div class="app-container">
+    
+    <aside class="sidebar-glitch">
+        <div class="logo-box">FIN•OS <span class="badge-god">GOD</span></div>
+        <nav>
+            <a href="home.html">HOME</a>
+            <a href="dashboard.html">DASHBOARD</a>
+            <a href="god-mode.html" class="active">OMNI-VIEW</a>
+            <a href="markets.html">MARKETS</a>
+        </nav>
+        <div class="sys-status">
+            <div class="live-dot"></div> SYSTEM ONLINE<br>
+            LATENCY: 12ms
+        </div>
+    </aside>
+
+    <main class="main-interface">
+        
+        <header class="hud-header">
+            <div class="search-module">
+                <span class="search-icon">⚡</span>
+                <input type="text" id="omniSearch" placeholder="ENTER ASSET ID (e.g. TATASTEEL)" value="RELIANCE">
+                <button onclick="engageOmniScan()">SCAN MATRIX</button>
+            </div>
+            <div class="ticker-tape">
+                <span id="marqueeText">AWAITING TARGET INPUT // READY FOR DEEP SCAN // 150+ METRICS STANDBY //</span>
+            </div>
+        </header>
+
+        <div id="loadingMatrix" class="matrix-loader" style="display:none;">
+            <div class="glitch-text" data-text="DECRYPTING...">DECRYPTING...</div>
+            <div class="progress-container"><div class="progress-bar"></div></div>
+            <div class="loading-logs">
+                <p>> Accessing NSE Mainframe...</p>
+                <p>> Parsing 75 Technical Vectors...</p>
+                <p>> Calculating Intrinsic Value...</p>
+            </div>
+        </div>
+
+        <div id="omniGrid" class="omni-grid" style="display:none;">
+
+            <div class="panel hero-panel">
+                <div class="hero-top">
+                    <div>
+                        <h1 id="d_sym">REL</h1>
+                        <div id="d_name" class="asset-name">Reliance Industries</div>
+                        <span id="d_sector" class="pill-sector">ENERGY</span>
+                    </div>
+                    <div class="price-box">
+                        <div id="d_price" class="big-price">₹0.00</div>
+                        <div id="d_change" class="price-change">0.00%</div>
+                    </div>
+                </div>
+                <div class="spark-wrapper">
+                    <canvas id="mainSpark"></canvas>
+                </div>
+            </div>
+
+            <div class="panel narrative-panel">
+                <div class="panel-head">🧠 DESI NEURAL ENGINE</div>
+                <div id="narrativeFeed" class="feed-content">
+                    </div>
+            </div>
+
+            <div class="panel radar-panel">
+                <div class="panel-head">🧬 DNA SCALAR</div>
+                <div style="height:220px; position:relative;">
+                    <canvas id="radarCanvas"></canvas>
+                </div>
+            </div>
+
+            <div class="panel fund-panel">
+                <div class="panel-head">💎 DEEP FUNDAMENTALS (75+)</div>
+                <div class="scroll-grid" id="fundGrid">
+                    </div>
+            </div>
+
+            <div class="panel tech-panel">
+                <div class="panel-head">🎛️ QUANTUM TECHNICALS (75+)</div>
+                <div class="scroll-grid" id="techGrid">
+                    </div>
+            </div>
+
+            <div class="panel model-panel">
+                <div class="panel-head">📐 PREDICTIVE MODELS</div>
+                <div class="model-row">
+                    <span>Graham Number (Intrinsic)</span>
+                    <span id="m_graham" class="val">₹0.00</span>
+                </div>
+                <div class="model-row">
+                    <span>Piotroski F-Score</span>
+                    <span id="m_fscore" class="val">0/9</span>
+                </div>
+                <div class="model-row">
+                    <span>Altman Z-Score</span>
+                    <span id="m_zscore" class="val">0.00</span>
+                </div>
+                <div class="model-row">
+                    <span>Ichimoku Cloud</span>
+                    <span id="m_ichi" class="val">--</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+</div>
+
+<script src="js/terminal.js"></script>
+</body>
+</html>

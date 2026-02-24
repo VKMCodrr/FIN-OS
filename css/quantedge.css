@@ -1,0 +1,44 @@
+/* QUANTEDGE CUSTOM STYLES */
+
+.quantedge .intel-header {
+  margin-bottom: 40px;
+}
+
+.quantedge .probability-orb {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, var(--electric-blue) 0%, transparent 80%);
+  border: 2px solid var(--electric-blue);
+  box-shadow: 0 0 40px rgba(79, 124, 255, 0.3);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.quantedge .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--neon-lime);
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.quantedge .dna-visual {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glassmorphism Refinement */
+.quantedge .intel-card.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

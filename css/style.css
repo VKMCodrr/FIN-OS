@@ -1,0 +1,120 @@
+:root {
+  --bg: #0B0C10;
+  --bg-soft: #12141A;
+  --text: #F5F6FA;
+  --muted: #9CA0AB;
+  --accent: #4F7CFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top, #111428, var(--bg));
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 6%;
+}
+
+.logo {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+  padding: 10px 22px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  padding: 120px 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(79,124,255,0.25), transparent 60%);
+  top: -100px;
+  left: -100px;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.hero-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title span {
+  color: var(--accent);
+}
+
+.hero-sub {
+  max-width: 520px;
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA */
+.cta-btn {
+  width: fit-content;
+  padding: 18px 44px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #4F7CFF, #6F8CFF);
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease;
+  z-index: 1;
+}
+
+/* TRUST */
+.trust {
+  display: flex;
+  justify-content: space-around;
+  padding: 48px 6%;
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}

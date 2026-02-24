@@ -1,0 +1,123 @@
+/* --- Root Consciousness Theme --- */
+:root {
+    --neon-purple: #9b59b6;
+    --neon-cyan: #00f2ff;
+    --neon-green: #C7F000;
+    --bg-darker: #050505;
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+.consciousness-portal {
+    padding-bottom: 100px;
+    perspective: 1000px;
+}
+
+/* --- Glitch Effect --- */
+.glitch-wrapper {
+    margin-top: 50px;
+}
+
+.glitch {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    position: relative;
+    text-transform: uppercase;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.glitch::before { left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
+
+/* --- Advanced Cards --- */
+.c-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 40px;
+    padding: 60px;
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.c-card:hover {
+    transform: rotateX(2deg) translateY(-10px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 30px 60px rgba(0, 242, 255, 0.1);
+}
+
+.badge {
+    background: var(--neon-cyan);
+    color: #000;
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono';
+    font-size: 0.7rem;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+/* --- Life Energy Calculator --- */
+.energy-calculator {
+    background: rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 24px;
+    margin-top: 20px;
+}
+
+.energy-calculator input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* --- HUD Elements --- */
+.stat-circle {
+    width: 200px;
+    height: 200px;
+    border: 5px solid var(--neon-green);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(199, 240, 0, 0.2);
+}
+
+#survivalDays { font-size: 3rem; font-weight: 800; }
+
+/* --- Contract --- */
+.glass-contract {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 80px;
+    text-align: center;
+    border: 1px dashed rgba(255,255,255,0.2);
+}
+
+.sign-btn {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    100% { clip: rect(62px, 9999px, 42px, 0); }
+}
