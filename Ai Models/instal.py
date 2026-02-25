@@ -1,51 +1,76 @@
 import yfinance as yf
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+import torch
+from transformers import pipeline
+import pandas as pd
 
-# 1. Setup the Brain
-model_path = "ProsusAI/finbert"
-print("Connecting to FIN-OS Intelligence...")
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
-analyzer = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
-
-def analyze_stock(ticker):
-    print(f"\n[Jarvis] Fetching live news for {ticker}...")
-    
-    stock = yf.Ticker(ticker)
-    news_list = stock.news 
-    
-    if not news_list:
-        print(f"No recent news found for {ticker}.")
-        return
-
-    print(f"{'SENTIMENT':<12} | {'HEADLINE'}")
-    print("-" * 60)
-
-    for item in news_list[:5]:
-        # 2026 UPDATE: Yahoo often changes keys. Let's look for common ones.
-        # We check 'title', then 'headline', then 'content'
-        title = item.get('title') or item.get('headline') or item.get('summary')
+class FinOSInteractive:
+    def __init__(self):
+        # Master Level Setup: Optimization for Apple Silicon (M1/M2/M3)
+        self.device = "mps" if torch.backends.mps.is_available() else "cpu"
+        print(f"--- [FIN-OS] INITIALIZING NEURAL ENGINE ON: {self.device.upper()} ---")
         
-        # If still nothing, Jarvis will look into the first 100 characters of the 'content'
-        if not title and 'content' in item:
-             title = item['content'].get('title', 'No Title Available')
-
-        if title == 'No Title Available':
-            # This is a fallback: Print the keys so you can see what changed
-            print(f"DEBUG: Found keys {list(item.keys())}")
-            continue
-
-        result = analyzer(title[:512])[0]
-        label = result['label'].upper()
-        score = result['score']
+        # Load FinBERT - The industry standard for financial sentiment
+        self.nlp = pipeline("sentiment-analysis", model="ProsusAI/finbert", device=self.device)
         
-        print(f"{label:<12} ({score:.2f}) | {title}")
-# 4. Interactive Terminal
-while True:
-    target = input("\n[Jarvis] Enter Ticker (e.g., RELIANCE.NS, TSLA, AAPL) or 'q' to quit: ")
-    if target.lower() in ['q', 'quit']: break
-    
-    try:
-        analyze_stock(target)
-    except Exception as e:
-        print(f"Error: {e}")
+    def analyze_stock(self, ticker):
+        ticker = ticker.upper().strip()
+        print(f"\n[SCANNING] Fetching live news for {ticker}...")
+        
+        stock_data = yf.Ticker(ticker)
+        news = stock_data.news
+        
+        if not news:
+            print(f"No news found for {ticker}. Is the ticker correct?")
+            return
+
+        impact_results = []
+        for item in news[:10]: # Analyze top 10 news items
+            # DEFENSIVE FETCH: Handles the KeyError you encountered
+            title = item.get('title') or item.get('content', {}).get('title', "N/A")
+            
+            if title == "N/A": continue
+
+            # AI Neural Sentiment Analysis
+            sentiment = self.nlp(title)[0]
+            label = sentiment['label']
+            score = sentiment['score']
+            
+            # Master Level Economic Impact Mapping
+            h_low = title.lower()
+            impact, driver = "Neutral", "Market Noise"
+            
+            if any(w in h_low for w in ["fed", "inflation", "cpi", "rates"]):
+                impact, driver = "Systemic", "Discount Rate (r)"
+            elif any(w in h_low for w in ["earnings", "revenue", "profit", "sales"]):
+                impact, driver = "Fundamental", "Cash Flow (Numerator)"
+            elif any(w in h_low for w in ["sec", "lawsuit", "investigation"]):
+                impact, driver = "Risk-Adjusted", "Risk Premium"
+
+            impact_results.append({
+                "Headline": title[:65] + "...",
+                "Sentiment": label.upper(),
+                "Impact": impact,
+                "Factor": driver,
+                "AI_Conf": f"{score:.1%}"
+            })
+
+        # Display results in a professional table
+        df = pd.DataFrame(impact_results)
+        print("\n" + "="*80)
+        print(df.to_string(index=False))
+        print("="*80 + "\n")
+
+    def run(self):
+        print("Welcome to FIN-OS: Real-Time Neural Impact Engine")
+        print("Enter 'EXIT' to close the terminal.\n")
+        while True:
+            ticker = input(">>> Enter Stock Ticker (e.g., TSLA, NVDA, AAPL): ")
+            if ticker.lower() == 'exit':
+                break
+            if not ticker:
+                continue
+            self.analyze_stock(ticker)
+
+if __name__ == "__main__":
+    engine = FinOSInteractive()
+    engine.run()
